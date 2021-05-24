@@ -3,7 +3,7 @@ package com.java.KnapSack;
 public class SubSetSum {
 
     public static void main(String[] args) {
-        int[] values = {3, 34, 4, 12, 13, 5};
+        int[] values = { 3, 34, 4, 12, 5, 2 };
         SubSet obj = new SubSet();
         System.out.println(obj.findSubSetSumRecursive(values, 9, values.length));
         System.out.println(obj.findSubsetSumTopDown(values, values.length, 9));
@@ -46,10 +46,13 @@ class SubSet {
         // up manner
         for (int i = 1; i <= sum; i++) {
             for (int j = 1; j <= n; j++) {
-                subset[i][j] = subset[i][j - 1];
-                if (i >= set[j - 1])
-                    subset[i][j] = subset[i][j]
+                if (i <= set[j-1]) {
+                    subset[i][j] = subset[i][j - 1];
+                }
+                if (i >= set[j - 1]) {
+                    subset[i][j] = subset[i][j - 1]
                             || subset[i - set[j - 1]][j - 1];
+                }
             }
         }
 
